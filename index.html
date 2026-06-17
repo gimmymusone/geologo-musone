@@ -122,11 +122,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:cen
 
 /* scroll hint */
 .scroll-hint{
-  position:absolute;top:calc(44% + 56px);left:50%;transform:translateX(-50%);
+  position:fixed;bottom:36px;left:50%;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:8px;
-  pointer-events:none;z-index:10;
+  pointer-events:none;z-index:400;
   opacity:0;animation:up .7s 1s forwards;
-  transition:opacity .4s ease;
+  transition:opacity .3s ease;
 }
 .scroll-hint span{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:500}
 .scroll-line{width:2px;height:44px;background:linear-gradient(to bottom,var(--gl),transparent);animation:pulse 1.4s ease-in-out infinite}
@@ -568,7 +568,7 @@ ScrollTrigger.create({
 
     // hero overlay svanisce nei primi 10%
     heroOverlay.style.opacity = Math.max(0, 1 - p/0.1) + '';
-    scrollHint.style.opacity  = Math.max(0, 1 - p/0.08) + '';
+    scrollHint.style.opacity  = p > 0.01 ? '0' : '1';
 
     // layer card
     let lay=LAYERS[0];
