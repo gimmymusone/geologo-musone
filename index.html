@@ -397,7 +397,7 @@ window.addEventListener('resize', () => { resize(); drawScene(currentDepth); });
 
 const LAYERS = [
   { name:'',             color:'#071a10', color2:'#0d3028', qc:null,   fs:null,  rf:null,   depth:0  },
-  { name:'Terreno veg.', color:'#5C3317', color2:'#7a4520', qc:'1.2',  fs:'18',  rf:'1.5',  depth:2  },
+  { name:'Terreno vegetale', color:'#5C3317', color2:'#7a4520', qc:'1.2',  fs:'18',  rf:'1.5',  depth:2  },
   { name:'Argilla',      color:'#8B5E3C', color2:'#a07040', qc:'3.5',  fs:'42',  rf:'1.2',  depth:5  },
   { name:'Sabbia',       color:'#C4A060', color2:'#d4b878', qc:'8.1',  fs:'85',  rf:'1.0',  depth:8  },
   { name:'Calcare',      color:'#7A7A6A', color2:'#9a9a88', qc:'15.4', fs:'148', rf:'0.96', depth:11 },
@@ -568,7 +568,8 @@ ScrollTrigger.create({
 
     // hero overlay svanisce nei primi 10%
     heroOverlay.style.opacity = Math.max(0, 1 - p/0.1) + '';
-    scrollHint.style.opacity  = p > 0.01 ? '0' : '1';
+    if(p > 0.01){ scrollHint.style.animation='none'; scrollHint.style.opacity='0'; }
+    else if(scrollHint.style.animation==='none'){ scrollHint.style.opacity='1'; }
 
     // layer card
     let lay=LAYERS[0];
