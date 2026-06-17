@@ -612,13 +612,9 @@ document.getElementById('contact-form').addEventListener('submit', function(e){
   }
 
   // costruisce mailto pre-compilato
-  const subject = encodeURIComponent('Richiesta indagine geotecnica – ' + nome);
-  const body = encodeURIComponent(
-    'Nome: ' + nome + '\n' +
-    'Email: ' + email + '\n' +
-    (comune ? 'Comune del sito: ' + comune + '\n' : '') +
-    '\nRichiesta:\n' + msg
-  );
+  const subjParts = ['Richiesta', nome, comune ? '— ' + comune : ''].filter(Boolean);
+  const subject = encodeURIComponent(subjParts.join(' '));
+  const body = encodeURIComponent(msg + '\n\n— ' + nome + (email ? ' (' + email + ')' : ''));
   window.location.href = 'mailto:geologomusone@pec.epap.com?subject=' + subject + '&body=' + body;
 
   // feedback visivo
